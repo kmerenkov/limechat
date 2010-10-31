@@ -3374,7 +3374,7 @@ static NSDateFormatter* dateTimeFormatter = nil;
 					if (!nick.length) continue;
 					UniChar u = [nick characterAtIndex:0];
 					char op = ' ';
-					if (u == '@' || u == '~' || u == '&' || u == '%' || u == '+') {
+					if (u == '@' || u == '~' || u == '&' || u == '%' || u == '+' || u == '!') {
 						op = u;
 						nick = [nick substringFromIndex:1];
 					}
@@ -3382,7 +3382,7 @@ static NSDateFormatter* dateTimeFormatter = nil;
 					IRCUser* m = [[IRCUser new] autorelease];
 					m.nick = nick;
 					m.q = op == '~';
-					m.a = op == '&';
+					m.a = op == '&' || op == '!';
 					m.o = op == '@' || m.q;
 					m.h = op == '%';
 					m.v = op == '+';
